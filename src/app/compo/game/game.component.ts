@@ -36,16 +36,20 @@ export class GameComponent implements OnInit {
     console.log(this.gamearea);
     this.gamearea.nativeElement.style.width = ((this.cubesizeint+4)*(this.polegrysizex))+"px";
     this.clearArena();
-    this.StopGame();
+    this.stopGame();
   }
 
   startGame(){
+    this.stopGame();
     this.statusgame = true;
     this.clearArena();
   }
 
+  resterGame(){
+    this.startGame();
+  }
+
   private clearArena() : void{
-    this.StopGame();
     this.time = 0;
     let value_aray = new Array(this.polegrysizex*this.polegrysizey);
     for(let x=0;x<this.polegrysizex*this.polegrysizey;x++){
@@ -74,9 +78,8 @@ export class GameComponent implements OnInit {
     },1000);
   }
 
-  StopGame(){
+  stopGame(){
     this.statusgame = false;
-    this.time = 0;
     clearTimeout(this.timehandler);
   }
 
@@ -119,7 +122,7 @@ export class GameComponent implements OnInit {
     }
 
     if(this.roznicjest == 0)
-      this.StopGame();
+      this.stopGame();
   }
 
   shuffle(array) {
