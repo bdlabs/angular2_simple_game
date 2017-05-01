@@ -1,0 +1,26 @@
+<div class="timer">
+  <span style="font-size:16px;">Ile jest nie pokoleji: {{roznicjest}}
+      czas gry: {{time}}s<br>
+    <div style="text-align:center;">
+    <div class="_buttons">
+      <a href="#" (click)="startGame()">Start</a>
+      <a href="#" (click)="clearArena()">Restart</a>
+      <a href="#" (click)="StopGame()">Stop</a>
+    </div>
+    </div>
+  </span>
+</div>
+  
+<div #gamearea class="pole">
+  <div class="_row" *ngFor="let row of polegry let x = index">
+    <div [ngClass]="{wrong: !col.correct}"
+    gameselector 
+    [style.width.px]="cubesize" 
+    [style.height.px]="cubesize" 
+    class="_col" *ngFor="let col of row let y = index"
+    (click)="selectPlage(x,y)"
+    >
+      {{ col.value }}
+    </div>
+  </div>
+</div>
